@@ -1,0 +1,44 @@
+bundle:
+  name: spotify_lab
+  uuid: 093b2507-8050-44cc-819a-229e9732afe3
+
+presets:
+  source_linked_deployment: false
+
+variables:
+  catalog:
+    default: spotify_catalog
+
+  schema:
+    default: gold
+
+  root_path:
+    default: /Workspace/users/michaelit2011@gmail.com/.bundle/${bundle.name}/${bundle.target}
+
+targets:
+  dev:
+    mode: development
+    default: true
+
+    workspace:
+      host: https://adb-7405617445780410.10.azuredatabricks.net
+
+    variables:
+      catalog: spotify_catalog
+      schema: ${workspace.current_user.short_name}
+      root_path: /Workspace/users/michaelit2011@gmail.com/.bundle/${bundle.name}/${bundle.target}
+
+  prod:
+    mode: production
+
+    workspace:
+      host: https://adb-7405617445780410.10.azuredatabricks.net
+      root_path: /Workspace/Production.bundle/${bundle.name}/${bundle.target}
+
+    variables:
+      catalog: spotify_catalog
+      schema: prod
+
+    permissions:
+      - user_name: michaelit2011@gmail.com
+        level: CAN_MANAGE
