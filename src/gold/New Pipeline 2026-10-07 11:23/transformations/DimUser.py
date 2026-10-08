@@ -1,4 +1,6 @@
+```python
 import dlt
+
 
 # ============================================================
 # 1. Data quality expectations
@@ -50,3 +52,4 @@ dlt.create_auto_cdc_flow(
     name="dimuser_cdc_flow",
     once=False
 )
+```
